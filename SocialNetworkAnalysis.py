@@ -2,6 +2,9 @@ import sys
 import networkx as nx
 from pyvis import network as net
 
+# Set variable for edge color
+main_edge_color = "#00b4ff"
+
 
 # This function draws an interactive nx object using Pyvis
 # Valid node attributes include: "size", "value", "title", "x", "y", "label", "color".
@@ -30,6 +33,8 @@ def interactive_graph(graph, prd_mode=False):
     if not prd_mode:
         sna_visualisation.show_buttons()
     if prd_mode:
+        # Options are set by exporting them from the non prd mode for the specific graph originally created
+        # You may need to change these for your graph
         sna_visualisation.set_options("""
             var options = {
               "nodes": {
@@ -82,14 +87,14 @@ def create_friend_group(graph, core_list=None, ext_list=None):
     for person1 in core_list:
         for person2 in core_list:
             if person1 != person2:
-                graph.add_edge(person1, person2, weight=5, color="#00b4ff")
+                graph.add_edge(person1, person2, weight=5, color=main_edge_color)
         for person2 in ext_list:
-            graph.add_edge(person1, person2, weight=1, color="#00b4ff")
+            graph.add_edge(person1, person2, weight=1, color=main_edge_color)
     # Iterate over extended list and add links between each other
     for person1 in ext_list:
         for person2 in ext_list:
             if person1 != person2:
-                graph.add_edge(person1, person2, weight=1, color="#00b4ff")
+                graph.add_edge(person1, person2, weight=1, color=main_edge_color)
 
 
 # Start of script
