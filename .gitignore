@@ -7,7 +7,7 @@ out
 gen
 
 # Data Folder
-/Data
+/Data/graph_data.py
 
 # Output
 sna.html
